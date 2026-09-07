@@ -1436,9 +1436,9 @@ const SHARED_CSS = `
   @font-face{font-family:"BMitra";src:url(https://cdn.jsdelivr.net/gh/intuxicated/css-persian@master/fonts/BMitra.ttf);font-weight:bold}
   @font-face{font-family:"BTitr";src:url(https://cdn.jsdelivr.net/gh/intuxicated/css-persian@master/fonts/BTitrBold.ttf);font-weight:bold}
   @font-face{font-family:"BKoodak";src:url(https://cdn.jsdelivr.net/gh/intuxicated/css-persian@master/fonts/BKoodakBold.ttf);font-weight:bold}
-  :root{--bg:#F3F6F9;--card:#FFFFFF;--primary:#123A5C;--primary-2:#1F6E8C;--accent:#B8922E;--muted:#5B6B7C;--line:#DEE5EC;--danger:#B3261E;--text:#16212E;--soft:#EBF0F5;--soft-2:#DCE4EC;--success:#1B7A4B;--warning:#A0611A;--info:#1B5E82;--shadow:0 10px 28px rgba(18,32,48,.10);}
-  [data-theme="light"]{--bg:#F3F6F9;--card:#FFFFFF;--primary:#123A5C;--primary-2:#1F6E8C;--muted:#5B6B7C;--line:#DEE5EC;--text:#16212E;--soft:#EBF0F5;--soft-2:#DCE4EC;}
-  [data-theme="dark"]{--bg:#0B141E;--card:#101C29;--primary:#2E7A9E;--primary-2:#3C8CB0;--muted:#93A6B8;--line:#1E2E3F;--text:#E8EEF3;--soft:#152232;--soft-2:#1C2C3F;--shadow:0 14px 34px rgba(0,0,0,.45);}
+  :root{--bg:#F3F6F9;--card:#FFFFFF;--primary:#123A5C;--primary-2:#1F6E8C;--accent:#B8922E;--muted:#5B6B7C;--line:#DEE5EC;--danger:#B3261E;--text:#16212E;--soft:#EBF0F5;--soft-2:#DCE4EC;--success:#1B7A4B;--warning:#A0611A;--info:#1B5E82;--shadow:0 10px 28px rgba(18,32,48,.10);--glass-bg:rgba(255,255,255,.62);--glass-border:rgba(255,255,255,.55);--glass-blur:18px;}
+  [data-theme="light"]{--bg:#F3F6F9;--card:#FFFFFF;--primary:#123A5C;--primary-2:#1F6E8C;--muted:#5B6B7C;--line:#DEE5EC;--text:#16212E;--soft:#EBF0F5;--soft-2:#DCE4EC;--glass-bg:rgba(255,255,255,.62);--glass-border:rgba(255,255,255,.55);}
+  [data-theme="dark"]{--bg:#0B141E;--card:#101C29;--primary:#2E7A9E;--primary-2:#3C8CB0;--muted:#93A6B8;--line:#1E2E3F;--text:#E8EEF3;--soft:#152232;--soft-2:#1C2C3F;--shadow:0 14px 34px rgba(0,0,0,.45);--glass-bg:rgba(16,28,41,.55);--glass-border:rgba(255,255,255,.10);}
   .theme-btn{padding:10px 20px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text);font-size:14px;cursor:pointer;transition:all .15s ease}
   .theme-btn:hover,.theme-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
   .color-swatch{width:42px;height:42px;border-radius:10px;border:1.5px solid var(--line);box-shadow:0 2px 8px rgba(18,32,48,.14);cursor:pointer;transition:transform .15s,box-shadow .15s;padding:0}
@@ -1446,7 +1446,7 @@ const SHARED_CSS = `
   .color-swatch.active{box-shadow:0 2px 8px rgba(18,32,48,.14),0 0 0 3px var(--primary)}
   *{box-sizing:border-box}
   html{scroll-behavior:smooth;overflow-x:hidden;max-width:100vw}
-  body{margin:0;min-height:100vh;font-family:'Vazirmatn',Tahoma,system-ui,sans-serif;color:var(--text);direction:rtl;transition:background .3s,color .3s;-webkit-font-smoothing:antialiased;overflow-x:hidden;max-width:100vw;
+  body{margin:0;min-height:100vh;font-family:'Estedad','Vazirmatn',Tahoma,system-ui,sans-serif;color:var(--text);direction:rtl;transition:background .3s,color .3s;-webkit-font-smoothing:antialiased;overflow-x:hidden;max-width:100vw;
     background:
       radial-gradient(1100px 620px at 18% -12%, var(--soft-2) 0%, transparent 62%),
       radial-gradient(900px 560px at 105% 8%, var(--soft) 0%, transparent 58%),
@@ -1455,7 +1455,7 @@ const SHARED_CSS = `
     background-attachment:fixed;
   }
   .wrap{max-width:1180px;margin:0 auto;padding:18px;position:relative;overflow-x:auto}
-  .header{position:relative;background:linear-gradient(rgba(0,0,0,.22),rgba(0,0,0,.22)),linear-gradient(120deg,var(--primary),var(--primary-2));color:#fff;border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:28px 22px;text-align:center;box-shadow:var(--shadow);}
+  .header{position:relative;background:linear-gradient(rgba(0,0,0,.22),rgba(0,0,0,.22)),linear-gradient(120deg,var(--primary),var(--primary-2));backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));color:#fff;border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:28px 22px;text-align:center;box-shadow:var(--shadow);animation:panel-fade-in .5s ease both;}
   .header::before{content:'';position:absolute;right:0;left:0;bottom:0;height:3px;background:linear-gradient(90deg,transparent,var(--accent),transparent);border-radius:0 0 16px 16px;pointer-events:none}
   .header::after{content:'';position:absolute;right:8%;left:8%;top:-26px;height:60px;background:radial-gradient(60% 100% at 50% 100%, color-mix(in srgb, var(--primary-2) 55%, transparent) 0%, transparent 75%);filter:blur(6px);pointer-events:none;z-index:-1}
   .header h1{position:relative;margin:4px 0;font-size:22px;font-weight:800;color:#fff;letter-spacing:.2px;text-shadow:0 1px 3px rgba(0,0,0,.4)}
@@ -1470,11 +1470,17 @@ const SHARED_CSS = `
   .th-designer .en{opacity:.85;font-weight:400}
   @media (max-width:600px){.th-topbar{justify-content:center}}
   .home-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:14px}
-  .home-card{border:1px solid var(--line);border-radius:18px;padding:16px;cursor:pointer;background:var(--card);transition:transform .15s,box-shadow .15s;text-align:right;text-decoration:none;color:var(--text);display:block;box-shadow:0 4px 14px rgba(18,32,48,.10)}
-  .home-card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(18,32,48,.10);border-color:var(--primary)}
+  .home-card{border:1px solid var(--glass-border);border-radius:18px;padding:16px;cursor:pointer;background:var(--glass-bg);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;text-align:right;text-decoration:none;color:var(--text);display:block;box-shadow:0 4px 14px rgba(18,32,48,.10);animation:panel-fade-in .45s ease both}
+  .home-card:hover{transform:translateY(-4px);box-shadow:0 10px 26px rgba(18,32,48,.16);border-color:var(--primary)}
   .home-card h4{margin:0 0 6px;font-size:15px}
   .home-card ul{margin:8px 0 0;padding-inline-start:18px;font-size:12.5px;color:var(--muted);line-height:1.9}
-  .card{background:linear-gradient(165deg, var(--card) 0%, var(--soft) 100%);border:1px solid var(--line);border-radius:20px;padding:20px;margin-top:16px;box-shadow:var(--shadow);transition:transform .15s ease}
+  @keyframes panel-fade-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  .login-hero{max-width:400px;margin:16px auto 0;text-align:center;box-shadow:0 20px 48px rgba(18,32,48,.18)}
+  .login-hero-badge{width:56px;height:56px;margin:0 auto 10px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;background:linear-gradient(135deg,var(--primary),var(--primary-2));box-shadow:0 10px 22px rgba(18,32,48,.24)}
+  .login-hero h3{margin:0 0 4px;font-size:17px}
+  .login-hero label{text-align:right}
+  .login-hero .btn{width:100%;margin-top:6px}
+  .card{background:linear-gradient(165deg, var(--glass-bg) 0%, var(--soft) 100%);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);border-radius:20px;padding:20px;margin-top:16px;box-shadow:var(--shadow);transition:transform .15s ease;animation:panel-fade-in .45s ease both}
   label{display:block;font-size:14px;margin:10px 0 6px;font-weight:600}
   input,textarea,select{width:100%;padding:11px 12px;border:2px solid var(--line);border-radius:12px;font-family:inherit;font-size:15px;background:var(--card);color:var(--text);transition:border-color .15s ease}
   input:focus,textarea:focus,select:focus{outline:none;border-color:var(--primary)}
@@ -2286,7 +2292,7 @@ const SHARED_CSS = `
   .exam-time-status .time-icon{font-size:24px}
 `;
 
-const FONT_LINK = `<link rel="preconnect" href="https://cdn.jsdelivr.net"><link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400..700&display=swap" rel="stylesheet">`;
+const FONT_LINK = `<link rel="preconnect" href="https://cdn.jsdelivr.net"><link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet"><link href="https://cdn.jsdelivr.net/gh/rastikerdar/estedad-font@v3.0.1/dist/font-face.css" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400..700&display=swap" rel="stylesheet">`;
 
 function pageHeader() {
   return `<div class="header"><h1>${esc(APP_TITLE)}</h1><h2>${esc(APP_DESIGNER)}</h2></div>`;
@@ -2309,14 +2315,49 @@ function landingPage() {
   return `<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>${esc(APP_TITLE)}</title>
-  ${FONT_LINK}<style>${SHARED_CSS}</style></head><body><div class="wrap">
-  ${pageHeader()}
-  <div class="card">
-    <p>دانش‌آموز گرامی، برای شرکت در آزمون از <b>لینک اختصاصی</b> که معلم برای شما ارسال کرده استفاده کنید.</p>
-    <p class="muted">هر دانش‌آموز یک لینک منحصربه‌فرد دارد.</p>
-    <hr style="border:none;border-top:1px solid var(--line);margin:14px 0">
-    <a class="btn" href="/teacher">ورود معلم</a>
-  </div></div></body></html>`;
+  ${FONT_LINK}<style>${SHARED_CSS}
+  .landing-body{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;position:relative;overflow:hidden}
+  .landing-blob{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:0;opacity:.55}
+  .landing-blob.b1{width:420px;height:420px;top:-160px;right:-120px;background:radial-gradient(circle,var(--primary-2),transparent 70%);animation:blob-float 9s ease-in-out infinite}
+  .landing-blob.b2{width:380px;height:380px;bottom:-150px;left:-110px;background:radial-gradient(circle,var(--accent),transparent 70%);animation:blob-float 11s ease-in-out infinite reverse}
+  .landing-blob.b3{width:280px;height:280px;top:40%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,var(--primary),transparent 72%);opacity:.28;animation:blob-float 13s ease-in-out infinite}
+  @keyframes blob-float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(20px,-24px) scale(1.08)}}
+  .landing-wrap{max-width:560px;width:100%;position:relative;z-index:1}
+  .landing-badge{width:74px;height:74px;margin:0 auto 14px;border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:34px;background:linear-gradient(135deg,var(--primary),var(--primary-2));box-shadow:0 12px 28px rgba(18,32,48,.28);animation:panel-fade-in .5s ease both}
+  .landing-hero{background:var(--glass-bg);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);border-radius:26px;padding:34px 28px;text-align:center;box-shadow:0 20px 50px rgba(18,32,48,.16);animation:panel-fade-in .55s ease both}
+  .landing-hero h1{margin:0 0 6px;font-size:24px;font-weight:800}
+  .landing-hero .muted{font-size:13.5px;margin-bottom:22px}
+  .landing-paths{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:520px){.landing-paths{grid-template-columns:1fr}}
+  .landing-path{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 14px;text-align:center;text-decoration:none;color:var(--text);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;display:flex;flex-direction:column;align-items:center;gap:8px}
+  .landing-path:hover{transform:translateY(-4px);box-shadow:0 10px 26px rgba(18,32,48,.14);border-color:var(--primary)}
+  .landing-path .lp-ico{font-size:30px}
+  .landing-path .lp-title{font-weight:700;font-size:14.5px}
+  .landing-path .lp-desc{font-size:11.5px;color:var(--muted);line-height:1.7}
+  .landing-path.is-teacher{background:linear-gradient(150deg,var(--primary),var(--primary-2));color:#fff;border-color:transparent}
+  .landing-path.is-teacher .lp-desc{color:rgba(255,255,255,.85)}
+  .landing-foot{margin-top:20px;font-size:11px;color:var(--muted)}
+  </style></head><body class="landing-body"><div class="landing-blob b1"></div><div class="landing-blob b2"></div><div class="landing-blob b3"></div>
+  <div class="landing-wrap">
+    <div class="landing-badge">🎓</div>
+    <div class="landing-hero">
+      <h1>${esc(APP_TITLE)}</h1>
+      <p class="muted">پلتفرم یکپارچه‌ی مدیریت کلاس، آزمون آنلاین و ارزیابی دانش‌آموزان</p>
+      <div class="landing-paths">
+        <div class="landing-path">
+          <div class="lp-ico">🧑‍🎓</div>
+          <div class="lp-title">دانش‌آموز هستم</div>
+          <div class="lp-desc">برای شرکت در آزمون، از لینک اختصاصی‌ای که معلمتان ارسال کرده استفاده کنید. هر دانش‌آموز یک لینک منحصربه‌فرد دارد.</div>
+        </div>
+        <a class="landing-path is-teacher" href="/teacher">
+          <div class="lp-ico">👩‍🏫</div>
+          <div class="lp-title">ورود معلم</div>
+          <div class="lp-desc">مدیریت کلاس، طراحی آزمون و مشاهده‌ی نتایج دانش‌آموزان</div>
+        </a>
+      </div>
+      <div class="landing-foot">${esc(APP_DESIGNER)}</div>
+    </div>
+  </div></body></html>`;
 }
 
 function notFoundPage() {
@@ -3790,8 +3831,9 @@ function teacherPage() {
   <body><div class="wrap">
     ${teacherHeader()}
 
-    <div class="card" id="login">
-      <h3 id="login-head">🔐 ورود معلم</h3>
+    <div class="card login-hero" id="login">
+      <div class="login-hero-badge">🔐</div>
+      <h3 id="login-head">ورود معلم</h3>
       <p class="muted" id="login-hint"></p>
       <label>ورود به عنوان</label>
       <select id="login-role">
