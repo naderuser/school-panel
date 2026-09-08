@@ -57,6 +57,12 @@ export function createApp(env) {
 
   app.disable("x-powered-by");
 
+  // فونت‌های محلی و هر فایل استاتیک دیگه — با کش طولانی چون نام فایل‌ها ثابته
+  app.use(express.static(new URL("../public", import.meta.url).pathname, {
+    maxAge: "30d",
+    immutable: true,
+  }));
+
   /* ------------------------- صفحات اصلی: روت‌های واقعی Express ------------------------- */
 
   app.get("/", (req, res) => {
