@@ -35,7 +35,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { WebSocketServer } from "ws";
 
-import worker, { ClassRoom as ClassRoomLogic } from "./index.js";
+import { ClassRoom as ClassRoomLogic } from "./index.js";
+import { createApp } from "./src/app.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -158,49 +159,10 @@ function parseCookieHeader(c) {
   return out;
 }
 
-/* ------------------------- تبدیل درخواست/پاسخ Node <-> Fetch API ------------------------- */
+/* ------------------------- سرور HTTP اصلی (Express) ------------------------- */
 
-async function nodeReqToFetchRequest(req) {
-  const host = req.headers.host || "localhost";
-  const url = `http://${host}${req.url}`;
-  const method = req.method || "GET";
-
-  let body;
-  if (method !== "GET" && method !== "HEAD") {
-    const chunks = [];
-    for await (const chunk of req) chunks.push(chunk);
-    if (chunks.length) body = Buffer.concat(chunks);
-  }
-
-  const headers = new Headers();
-  for (const [k, v] of Object.entries(req.headers)) {
-    if (v == null) continue;
-    headers.set(k, Array.isArray(v) ? v.join(", ") : v);
-  }
-
-  return new Request(url, { method, headers, body });
-}
-
-async function sendFetchResponse(res, response) {
-  res.statusCode = response.status;
-  response.headers.forEach((value, key) => res.setHeader(key, value));
-  const buf = Buffer.from(await response.arrayBuffer());
-  res.end(buf);
-}
-
-/* ------------------------- سرور HTTP اصلی ------------------------- */
-
-const server = http.createServer(async (req, res) => {
-  try {
-    const request = await nodeReqToFetchRequest(req);
-    const response = await worker.fetch(request, env);
-    await sendFetchResponse(res, response);
-  } catch (err) {
-    res.statusCode = 500;
-    res.setHeader("content-type", "application/json; charset=utf-8");
-    res.end(JSON.stringify({ ok: false, error: String(err && err.message ? err.message : err) }));
-  }
-});
+const app = createApp(env);
+const server = http.createServer(app);
 
 /* ------------------------- مدیریت WebSocket کلاس آنلاین ------------------------- */
 
