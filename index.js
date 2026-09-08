@@ -2292,7 +2292,7 @@ const SHARED_CSS = `
   .exam-time-status .time-icon{font-size:24px}
 `;
 
-const FONT_LINK = `<link rel="preconnect" href="https://cdn.jsdelivr.net"><link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet"><link href="https://cdn.jsdelivr.net/gh/rastikerdar/estedad-font@v3.0.1/dist/font-face.css" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400..700&display=swap" rel="stylesheet">`;
+const FONT_LINK = `<link rel="stylesheet" href="/fonts.css">`;
 
 function pageHeader() {
   return `<div class="header"><h1>${esc(APP_TITLE)}</h1><h2>${esc(APP_DESIGNER)}</h2></div>`;
