@@ -326,7 +326,7 @@ export default {
  * "new_classes") در migrations استفاده شود تا با پلن رایگان سازگار باشد.
  * -------------------------------------------------------------------------------- */
 
-async function handleClassroomSocket(req, env, url) {
+export async function handleClassroomSocket(req, env, url) {
   const role = url.searchParams.get("role") === "teacher" ? "teacher" : "student";
 
   // مسیر تشخیصی: بدون WebSocket، فقط بررسی می‌کند که آیا اتصال باید موفق باشد یا نه
@@ -516,7 +516,7 @@ export class ClassRoom {
 
 /* ------------------------- API ------------------------- */
 
-async function handleApi(req, env, url, path) {
+export async function handleApi(req, env, url, path) {
   const method = req.method;
 
   /* --- دریافت و ارسال اطلاعات: پشتیبانی از ارسال بین دو پنل جدا روی کلودفلر (CORS) --- */
@@ -2311,7 +2311,7 @@ function teacherHeader() {
 
 /* ------------------------- صفحه اصلی ------------------------- */
 
-function landingPage() {
+export function landingPage() {
   return `<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>${esc(APP_TITLE)}</title>
@@ -2360,7 +2360,7 @@ function landingPage() {
   </div></body></html>`;
 }
 
-function notFoundPage() {
+export function notFoundPage() {
   return `<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8">
   ${FONT_LINK}<style>${SHARED_CSS}</style></head><body><div class="wrap">
   ${pageHeader()}<div class="card"><h2>صفحه یافت نشد</h2><a class="btn" href="/">بازگشت</a></div></div></body></html>`;
@@ -2368,7 +2368,7 @@ function notFoundPage() {
 
 /* ------------------------- صفحه دانش‌آموز ------------------------- */
 
-async function studentPage(env, id) {
+export async function studentPage(env, id) {
   const student = await env.EXAM_KV.get("student:" + id);
   if (!student) {
     return html(
@@ -3005,7 +3005,7 @@ async function studentPage(env, id) {
 
 /* ------------------------- دریافت و ارسال اطلاعات - صفحه‌ی عمومی لینک اختصاصی ------------------------- */
 
-async function infoLinkPage(env, linkId) {
+export async function infoLinkPage(env, linkId) {
   return html(`<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>ارسال اطلاعات</title>${FONT_LINK}<style>${SHARED_CSS}
@@ -3185,7 +3185,7 @@ async function infoLinkPage(env, linkId) {
 
 /* ------------------------- کاربرگ - صفحه دانش‌آموز ------------------------- */
 
-async function workSheetPage(env, id) {
+export async function workSheetPage(env, id) {
   const student = await env.EXAM_KV.get("student:" + id);
   if (!student) {
     return html(
@@ -3395,7 +3395,7 @@ async function workSheetPage(env, id) {
 
 /* ------------------------- کلاس آنلاین - صفحه دانش‌آموز ------------------------- */
 
-async function studentClassPage(env, id) {
+export async function studentClassPage(env, id) {
   const raw = await env.EXAM_KV.get("student:" + id);
   if (!raw) {
     return html(
@@ -3756,7 +3756,7 @@ async function studentClassPage(env, id) {
 /* ------------------------- پنل معلم (کامل) ------------------------- */
 
 /* ------------------------- Service Worker حالت آفلاین (فقط پنل معلم) ------------------------- */
-function teacherServiceWorkerScript() {
+export function teacherServiceWorkerScript() {
   return `
 const SW_VER='panel-offline-v3';
 const SHELL_CACHE='shell-'+SW_VER, API_CACHE='api-'+SW_VER, CDN_CACHE='cdn-'+SW_VER;
@@ -3818,15 +3818,15 @@ self.addEventListener('fetch',(event)=>{
 `;
 }
 
-function teacherPage() {
+export function teacherPage() {
   return `<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>${esc(APP_TITLE)}</title>${FONT_LINK}<style>${SHARED_CSS}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-  <script>pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+  <script defer>window.addEventListener('DOMContentLoaded',()=>{if(window.pdfjsLib)pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';});</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js" defer></script>
   </head>
   <body><div class="wrap">
     ${teacherHeader()}
